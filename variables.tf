@@ -34,3 +34,8 @@ variable "node_selector" {
 
   description = "Node selector for the autoscaler pods"
 }
+
+variable "chart_version" {
+  default     = "9.4.0"
+  description = "The version of the helm chart to install"
+}
