@@ -15,7 +15,7 @@ resource "helm_release" "autoscaler" {
       nodeSelector      = var.node_selector,
       autoscalingGroups = var.groups,
       image = {
-        tag = var.image_version
+        tag        = var.image_version
         repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
       }
       rbac = {
