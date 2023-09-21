@@ -12,6 +12,7 @@ resource "helm_release" "autoscaler" {
 
   values = [
     yamlencode({
+      awsRegion         = data.aws_region.current.name
       nodeSelector      = var.node_selector,
       autoscalingGroups = var.groups,
       image = {
