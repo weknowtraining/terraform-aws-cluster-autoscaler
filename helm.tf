@@ -10,17 +10,13 @@ resource "helm_release" "autoscaler" {
   max_history = 10
   namespace   = var.namespace
 
-  set {
-    name  = "awsRegion"
-    value = data.aws_region.current.name
-  }
-
   values = [
     yamlencode({
       nodeSelector      = var.node_selector,
       autoscalingGroups = var.groups,
       image = {
         tag = var.image_version
+        repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
       }
       rbac = {
         serviceAccount = {
