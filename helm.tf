@@ -13,12 +13,14 @@ resource "helm_release" "autoscaler" {
   values = [
     yamlencode({
       awsRegion         = data.aws_region.current.name
-      nodeSelector      = var.node_selector,
-      autoscalingGroups = var.groups,
+      nodeSelector      = var.node_selector
+      autoscalingGroups = var.groups
+
       image = {
         tag        = var.image_version
         repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
       }
+
       rbac = {
         serviceAccount = {
           name = var.service_account_name,
