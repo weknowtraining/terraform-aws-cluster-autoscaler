@@ -36,6 +36,11 @@ variable "node_selector" {
 }
 
 variable "chart_version" {
-  default     = "9.4.0"
+  type        = string
   description = "The version of the helm chart to install"
+}
+
+variable "image_version" {
+  type        = string
+  description = "Version of the autoscaler to run"
 }

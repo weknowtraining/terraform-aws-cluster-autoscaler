@@ -19,6 +19,9 @@ resource "helm_release" "autoscaler" {
     yamlencode({
       nodeSelector      = var.node_selector,
       autoscalingGroups = var.groups,
+      image = {
+        tag = var.image_version
+      }
       rbac = {
         serviceAccount = {
           name = var.service_account_name,
