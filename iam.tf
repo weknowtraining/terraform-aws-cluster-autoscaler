@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "assume-role" {
 }
 
 resource "aws_iam_role" "this" {
-  name               = "cluster-autoscaler"
+  name_prefix        = "cluster-autoscaler"
   assume_role_policy = data.aws_iam_policy_document.assume-role.json
 }
 
@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "this" {
 
     condition {
       test     = "StringEquals"
-      variable = "autoscaling:ResourceTag/kubernetes.io/cluster/${var.cluster_id}"
+      variable = "autoscaling:ResourceTag/kubernetes.io/cluster/${var.cluster_name}"
       values   = ["owned"]
     }
 
